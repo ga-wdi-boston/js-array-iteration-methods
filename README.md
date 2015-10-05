@@ -12,7 +12,7 @@
 
 ## Introduction
 
-We'' explore the array methods that allow us to test and transform arrays writing less code.
+We'll explore the array methods that allow us to test and transform arrays writing less code.
 
 ## Objectives
 
