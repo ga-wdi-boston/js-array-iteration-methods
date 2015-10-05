@@ -12,7 +12,7 @@
 
 ## Introduction
 
-We'll explore the array methods that allow us to test and transform arrays writing less code.
+We'll look at the array methods that allow us to test and transform arrays more simply and consistently.
 
 ## Objectives
 
@@ -24,9 +24,11 @@ By the end of this lesson, students should be able to:
 
 ## Array Methods
 
+We'll explore and implement proxies for a variety of the JavaScript Array methods.
+
 [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-### Demon
+### Demo
 
 [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
