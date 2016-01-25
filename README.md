@@ -6,10 +6,6 @@
 
 - [JavaScript Functions "Ins & Outs"](https://github.com/ga-wdi-boston/js-functions-ins-and-outs)
 
-## Reading
-
-- MDN [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) reference
-
 ## Introduction
 
 We'll look at the array methods that allow us to test and transform arrays more simply and consistently.
@@ -30,26 +26,35 @@ We'll explore and implement proxies for a variety of the JavaScript Array method
 
 ### Demo
 
-[forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+The [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) method iterates over all of the elements in an array.  
 
 ### Code along
 
-[map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+The [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method returns a new array containing a transformation of each element in this array.
+
+### Lab
+
+Write a function, mutate, that takes an array and a function as arguments and changes the array in place based on the return value of invoking transform.
+
+```js
+const mutate = function mutate(array, transform) {
+
+};
+```
 
 ### Demo
 
-[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+The [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) produces a single value from operating on all the values in the array.  It "reduces" many to one.
 
 ### Code along
 
-[every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) method checks to see if all elements of an array meet some test.  The function used for this should only return `true` or `false`.  This type of function is often called a predicate.
 
 ## Additional Resources
 
-[some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+The [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) methods are often quite useful.
 
-[filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+## [License](LICENSE)
 
-## Assessment
-
-Please follow the instructions at https://github.com/ga-wdi-boston/js-array-methods-assessment
+Source code distributed under the MIT license. Text and other assets copyright
+General Assembly, Inc., all rights reserved.
