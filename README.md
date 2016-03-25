@@ -24,35 +24,75 @@ We'll explore and implement proxies for a variety of the JavaScript Array method
 
 [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
+### Callbacks
+
+A callback is a function that gets passed into an initial function/method as an argument, so that the initial function/method can invoke it.
+
+### Arrow Functions
+
+We'll also be working with `arrow` (sometimes referred to as `fat arrow`) functions versus standard function declarations.
+
+Arrow functions:
+
+- always have a bound `this`
+- **cannot** be used as a Constructor (no `new`, no `prototypes`)
+- no `arguments`
+
+```js
+> typeof () => {}
+'function'
+
+> () => {} instanceof Function
+true
+
+```
+
 ### Demo
 
-The [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) method iterates over all of the elements in an array.  
+#### `forEach`
+
+- The [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) method iterates over all of the elements in an array.
+- Unlike a `for` loop, `forEach` cannot be stopped or broken out of
+- Makes changes to the array provided to it (vs returning a new array)
 
 ### Code along
 
-The [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method returns a new array containing a transformation of each element in this array.
+#### `map`
+
+- The [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method returns a **new** array with the results of the functions applied to the array it is called upon
+- The array it is called upon therefore is **not** mutated
 
 ### Lab
 
-Write a function, mutate, that takes an array and a function as arguments and changes the array in place based on the return value of invoking transform.
+Write a function, `mutate`, that takes an array and a function as arguments and changes the array in place based on the return value of invoking `transform`.
 
 ```js
-const mutate = function mutate(array, transform) {
+const mutate = function(array, transform) {
 
 };
 ```
 
 ### Demo
 
-The [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) produces a single value from operating on all the values in the array.  It "reduces" many to one.
+#### `reduce`
+
+- The [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) method returns a single value from operating on all the values in the array.  It "reduces" many to one.
+- The original array `reduce` is invoked on does not change.
 
 ### Code along
 
-The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) method checks to see if all elements of an array meet some test.  The function used for this should only return `true` or `false`.  This type of function is often called a predicate.
+#### `every`
 
-## Additional Resources
+- The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) method checks to see if all elements of an array meet some test.  The function used for this should only return `true` or `false`.  This type of function is often called a predicate.
 
-The [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) methods are often quite useful.
+## Further Practice
+
+Research the [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) methods as they are also useful.
+- What is the purpose of each?
+- What is returned from each?
+- Is the array they are called upon mutated?
+
+
 
 ## [License](LICENSE)
 
