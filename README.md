@@ -53,8 +53,7 @@ true
 
 -  The [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) method iterates over all of the elements in an array.
 -  Unlike a `for` loop, `forEach` cannot be stopped or broken out of
--  Makes changes to the array provided to it (vs returning a new array)
-
+-  Does not change the elements of the original array and will return `undefined`
 ### Code along
 
 #### `map`
