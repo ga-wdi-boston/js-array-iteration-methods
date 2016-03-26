@@ -64,7 +64,7 @@ true
 
 ### Lab
 
-Write a function, `mutate`, that takes an array and a function as arguments and changes the array in place based on the return value of invoking `transform`.
+Write a function, `mutate`, that takes an array and a function as arguments and ***does** change the original array based on the return value of invoking `transform`.
 
 ```js
 const mutate = function(array, transform) {
