@@ -36,7 +36,7 @@ Arrow functions:
 
 -  always have a bound `this`
 -  **cannot** be used as a Constructor (no `new`, no `prototypes`)
--  no `arguments`
+-  no [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
 
 ```js
 > typeof () => {}
