@@ -1,23 +1,38 @@
 'use strict';
 
-var forEach = require('../lib/for-each.js');
+// Allow chai syntax like `expect(foo).to.be.ok;`
+// jshint -W030
 
-xdescribe('forEach', function() {
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 
-  xdescribe('check callback arguments', function() {
+chai.use(chaiAsPromised);
 
-    var array = [1, 2, 3];
+const expect = chai.expect;
 
-    xit('passes only numbers as first argument', function() {
-      var success;
+const forEach = require('../lib/for-each');
 
-      var callback = function callback(currentValue, index, array) {
-        success = typeof currentValue === 'number';
+describe('forEach', function () {
+
+  describe('check callback arguments', function () {
+
+    const array = [1, 2, 3];
+
+    it('passes only numbers as first argument', function () {
+      let success = true;
+      let index = 0;
+
+      const callback = function (e, i, a) {
+        success = success &&
+          typeof currentValue === 'number' &&
+          index++ === i &&
+          array === a;
       };
 
       forEach(array, callback);
 
-      expect(success).toBe(true);
+      expect(success).to.be.true;
+      expect(index).to.be.above(0);
     });
 
   });
