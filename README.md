@@ -1,51 +1,42 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# JavaScript Array methods
+# JavaScript Array Iteration Methods
 
 ## Prerequisites
 
 -   [JavaScript Functions "Ins & Outs"](https://github.com/ga-wdi-boston/js-functions-ins-and-outs)
+
+## Objectives
+
+By the end of this talk, developers should be able to:
+
+-   Write callbacks to pass to array methods
+-   Write functions to emulate array methods
+-   Write functions using array methods to add functionality.
 
 ## Preparation
 
 1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
     this repository.
 1.  Create a new branch, `training`, for your work.
+1.  Checkout the `training` branch.
 1.  Install dependencies with `npm install`.
 
-## Objectives
+## Callbacks
 
-By the end of this lesson, students should be able to:
+A callback is a function that we pass as an argument to another function or
+method.  This other function invokes the callback as a necessary part of
+accomplishing its task.  The JavaScript Array Iteration Methods require callback
+functions.
 
--   Write callbacks to pass to array methods
--   Write functions to emulate array methods
--   Write functions using array methods to add functionality.
+We often use predicate functions, functions returning either `true` or `false`, as callbacks.
 
-## Array Methods
+## Arrow Functions
 
-We'll look at the array methods that allow us to test and transform arrays more
- simply and consistently.
+We frequently use `arrow` (sometimes referred to as `fat arrow`) functions
+as callbacks.  This is convenient when the callback is anonymous.
 
-We'll explore and implement proxies for a variety of the JavaScript Array
- methods.
-
-[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-
-### Callbacks
-
-A callback is a function that gets passed into an initial function/method as an
- argument, so that the initial function/method can invoke it.
-
-### Arrow Functions
-
-We'll also be working with `arrow` (sometimes referred to as `fat arrow`)
- functions versus standard function declarations.
-
-Arrow functions:
-
--   always have a bound `this`
--   **cannot** be used as a Constructor (no `new`, no `prototypes`)
--   no [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
+Although the following is true of arrow functions:
 
 ```js
 > typeof () => {}
@@ -53,65 +44,128 @@ Arrow functions:
 
 > () => {} instanceof Function
 true
-
 ```
 
-### Demo
+There are a few caveats.
 
-#### `forEach`
+Arrow functions:
 
--   The [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-method iterates over all of the elements in an array.
--   Unlike a `for` loop, `forEach` cannot be stopped or broken out of
--   Does not change the elements of the original array and will return
- `undefined`
+-   cannot use  [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
+    (trying generates: `ReferenceError: arguments is not defined`).
+-   **cannot** be used as a Constructor (`new` does not bind `this`, no
+    `prototype` property).
+-   always have a lexically bound `this` (we'll learn more about that later).
 
-### Code Along
+## Array Iteration Methods
 
-#### `map`
+We'll explore the array methods that allow us to test and transform arrays more
+simply and consistently, [Iteration
+methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods),
+and we'll model some of these JavaScript Array methods as functions.
 
--   The [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-method returns a **new** array with the results of the functions applied to the
-array it is called upon
--   The array it is called upon therefore is **not** mutated
+We'll check our work in `node` or using `bin/array-iteration-methods.js`.
 
-### Lab
+### Demo: modeling and using `forEach`
 
-Write a function, `mutate`, that takes an array and a function as arguments and
-***does** change the original array based on the return value of invoking
-`transform`.
+The
+[forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+method iterates over all of the elements in an array. Unlike a `for` loop, it
+cannot be stopped (all elements are processed).  `forEach` returns `undefined`.
 
-```js
-const mutate = function(array, transform) {
+From the MDN documentation:
 
-};
-```
+    There is no way to stop or break a forEach() loop other than by throwing an
+    exception. If you need such behavior, the forEach() method is the wrong
+    tool, use a plain loop instead. If you are testing the array elements for a
+    predicate and need a Boolean return value, you can use every() or some()
+    instead. If available, the new methods find() or findIndex() can be used for
+    early termination upon true predicates as well.
 
-### Demo
+This means that `forEach` is a poor choice for an operation on an array that may
+terminate early.
 
-#### `reduce`
+### Code along: modeling and using `reduce`
 
--   The [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+The
+[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 method returns a single value from operating on all the values in the array.  It
-"reduces" many to one.
--   The original array `reduce` is invoked on does not change.
+"reduces" many to one. The original array does not change.
 
-### Code Along
+The key to using `reduce` properly is to methodically walk-through the "How reduce works" section at the above link.
 
-#### `every`
+Because `reduce` must access all of the elements of the array, we'll implement
+it in terms of `forEach`.
 
--   The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
-method checks to see if all elements of an array meet some test.  The function
+### Code along: modeling and using `map`
+
+The
+[map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+method returns a **new** array the same size as the existing array.  The
+elements of the new array are set to the return value of the callback passed to
+`map` invoked with the corresponding element from the original array as its
+argument (e.g. `newArray[i] = callback(array[i])`).  The array `map` is called
+upon is **not** mutated.
+
+### Lab: modeling and using `filter`
+
+The
+[filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+method returns a **new** array containing elements from the original array for
+which the callback returns `true`.  The length of the new array may be 0, the
+callback returned `false` for every element, or equal to the length of the
+original array, the callback returned `true` for every element in the original
+array.
+
+Callbacks passed to `filter` should be predicate functions.
+
+### Code along: modeling and using `some`
+
+The [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) method return true if the callback returns `true` for any element of the array.
+
+Callbacks passed to `some` should be predicate functions.
+
+### Lab: modeling and using `every`
+
+The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+method checks to see if all elements of the array meet some test.  The function
 used for this should only return `true` or `false`.  This type of function is
 often called a predicate.
 
-## Further Practice
+Callbacks passed to `every` should be predicate functions.
 
-Research the [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) methods as they are also useful.
+Can we build `every` using `some`?
 
--   What is the purpose of each?
--   What is returned from each?
--   Is the array they are called upon mutated?
+### Code along: modeling and using `find`
+
+The
+[find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+method returns the first element in the array for which the callback returns
+true.
+
+Could we have built `some` using `find`?
+
+### Lab: modeling and using `findIndex`
+
+The
+[findIndex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+method returns the index of the first element in the array for which the callback
+returns true.
+
+Can we build `findIndex` using `find`?
+
+### Lab: modeling and using `reduceRight`
+
+The [reduceRight](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight) method ifs functionally equivalent to using `reduce` on the array returned by the `reverse` JavaScript Array method.
+
+Hint:  Start by writing `forEachRight` (similar to forEach but iterating from
+the last element (at index `length-1`) through the first (at index 0).
+
+How would `reduceRight` differ from `reduce`?
+
+## Additional Resources
+
+-   [List](https://en.wikipedia.org/wiki/List_(abstract_data_type))
+-   [Array](https://en.wikipedia.org/wiki/Array_data_type)
 
 ## [License](LICENSE)
 
