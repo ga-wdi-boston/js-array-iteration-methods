@@ -84,7 +84,7 @@ From the MDN documentation:
 This means that `forEach` is a poor choice for an operation on an array that may
 terminate early.
 
-### Code along: modeling and using `reduce`
+### Annotate along: modeling and using `reduce`
 
 The
 [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
