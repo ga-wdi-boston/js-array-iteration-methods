@@ -50,7 +50,8 @@ There are a few caveats.
 
 Arrow functions:
 
--   cannot use  [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
+-   cannot use
+    [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
     (trying generates: `ReferenceError: arguments is not defined`).
 -   **cannot** be used as a Constructor (`new` does not bind `this`, no
     `prototype` property).
@@ -63,7 +64,7 @@ simply and consistently, [Iteration
 methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods),
 and we'll model some of these JavaScript Array methods as functions.
 
-We'll check our work in `node` or using `bin/array-iteration-methods.js`.
+We'll check our work in `node` or using the scripts in `bin/`.
 
 ### Demo: modeling and using `forEach`
 
@@ -84,18 +85,6 @@ From the MDN documentation:
 This means that `forEach` is a poor choice for an operation on an array that may
 terminate early.
 
-### Annotate along: modeling and using `reduce`
-
-The
-[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-method returns a single value from operating on all the values in the array.  It
-"reduces" many to one. The original array does not change.
-
-The key to using `reduce` properly is to methodically walk-through the "How reduce works" section at the above link.
-
-Because `reduce` must access all of the elements of the array, we'll implement
-it in terms of `forEach`.
-
 ### Code along: modeling and using `map`
 
 The
@@ -105,6 +94,28 @@ elements of the new array are set to the return value of the callback passed to
 `map` invoked with the corresponding element from the original array as its
 argument (e.g. `newArray[i] = callback(array[i])`).  The array `map` is called
 upon is **not** mutated.
+
+Because `map` must access all of the elements of the array, we'll implement our
+model of it in terms of `forEach`.
+
+After we build our version of `map`, we'll test and compare it against the built
+in version.
+
+### Annotate along: modeling and using `reduce`
+
+The
+[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+method returns a single value from operating on all the values in the array.  It
+"reduces" many to one. The original array does not change.
+
+Because `reduce` must access all of the elements of the array, our
+implementation uses `forEach`.
+
+The key to **using** `reduce` properly is to methodically walk-through the
+"How reduce works" section at the above link.
+
+After we build our version of `reduce`, we'll test and compare it against the
+built in version.
 
 ### Lab: modeling and using `filter`
 
@@ -118,11 +129,34 @@ array.
 
 Callbacks passed to `filter` should be predicate functions.
 
+### Demo: modeling and using `findIndex`
+
+The
+[findIndex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+method returns the index of the first element in the array for which the
+callback returns true.
+
+Why do we need `findIndex`?  Why not just use
+[indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)?
+
+### Code along: modeling and using `find`
+
+The
+[find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+method returns the first element in the array for which the callback returns
+true.
+
+Can we build `find` using `findIndex`?
+
 ### Code along: modeling and using `some`
 
-The [some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) method return true if the callback returns `true` for any element of the array.
+The
+[some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+method return true if the callback returns `true` for any element of the array.
 
 Callbacks passed to `some` should be predicate functions.
+
+Can we build `some` using `findIndex`?
 
 ### Lab: modeling and using `every`
 
@@ -133,34 +167,18 @@ often called a predicate.
 
 Callbacks passed to `every` should be predicate functions.
 
-Can we build `every` using `some`?
-
-### Code along: modeling and using `find`
-
-The
-[find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
-method returns the first element in the array for which the callback returns
-true.
-
-Could we have built `some` using `find`?
-
-### Lab: modeling and using `findIndex`
-
-The
-[findIndex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
-method returns the index of the first element in the array for which the callback
-returns true.
-
-Can we build `findIndex` using `find`?
+Can we build `every` using `findIndex`?  Using `some`?
 
 ### Lab: modeling and using `reduceRight`
 
-The [reduceRight](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight) method ifs functionally equivalent to using `reduce` on the array returned by the `reverse` JavaScript Array method.
+The [reduceRight](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
+method is functionally equivalent to using `reduce` on the array returned by
+the `reverse` JavaScript Array method.
 
 Hint:  Start by writing `forEachRight` (similar to forEach but iterating from
 the last element (at index `length-1`) through the first (at index 0).
 
-How would `reduceRight` differ from `reduce`?
+How would the results of calling `reduceRight` differ from calling `reduce`?
 
 ## Additional Resources
 
