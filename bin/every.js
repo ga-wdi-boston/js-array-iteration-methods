@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-const examples = require('../lib/examples');
-const every = require('../lib/every.js');
+const examples = require('../lib/examples')
+const every = require('../lib/every.js')
 
-let workingArray = examples.numbers.whole;
+const workingArray = examples.numbers.whole
 
-let result = every(workingArray, (e /*, i, a */) => e > 0);
+const result = every(workingArray, (e /*, i, a */) => e > 0)
 
-console.log('every result', result);
+console.log('every result', result)

@@ -1,40 +1,36 @@
-'use strict';
+'use strict'
 
 // Allow chai syntax like `expect(foo).to.be.ok;`
 // jshint -W030
 
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
+const chai = require('chai')
+const chaiAsPromised = require('chai-as-promised')
 
-chai.use(chaiAsPromised);
+chai.use(chaiAsPromised)
 
-const expect = chai.expect;
+const expect = chai.expect
 
-const forEach = require('../lib/for-each');
+const forEach = require('../lib/for-each')
 
 describe('forEach', function () {
-
   describe('check callback arguments', function () {
-
-    const array = [1, 2, 3];
+    const array = [1, 2, 3]
 
     it('passes only numbers as first argument', function () {
-      let success = true;
-      let index = 0;
+      let success = true
+      let index = 0
 
       const callback = function (e, i, a) {
         success = success &&
           typeof currentValue === 'number' &&
           index++ === i &&
-          array === a;
-      };
+          array === a
+      }
 
-      forEach(array, callback);
+      forEach(array, callback)
 
-      expect(success).to.be.true;
-      expect(index).to.be.above(0);
-    });
-
-  });
-
-});
+      expect(success).to.be.true
+      expect(index).to.be.above(0)
+    })
+  })
+})
