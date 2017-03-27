@@ -29,21 +29,31 @@ method.  This other function invokes the callback as a necessary part of
 accomplishing its task.  The JavaScript Array Iteration Methods require callback
 functions.
 
-We often use predicate functions, functions returning either `true` or `false`, as callbacks.
+We often use predicate functions, functions returning either `true` or `false`,
+as callbacks.
 
 ## Arrow Functions
 
-We frequently use `arrow` (sometimes referred to as `fat arrow`) functions
-as callbacks.  This is convenient when the callback is anonymous.
+We frequently use `arrow` (sometimes referred to as `fat arrow`) functions as
+callbacks with array iteration methods.  This is convenient when the callback is
+simple and anonymous.
+
+Arrow functions bodies that are a single expression have an added benefit, an
+implicit return.  This means that arrow function bodies without `{}` return the
+value of the expression without needing to use `return`.
 
 Although the following is true of arrow functions:
 
 ```js
 > typeof () => {}
 'function'
-
+> typeof (() => true)
+'function'
 > () => {} instanceof Function
 true
+> (() => true) instanceof Function
+true
+>
 ```
 
 There are a few caveats.
@@ -62,11 +72,19 @@ Arrow functions:
 We'll explore the array methods that allow us to test and transform arrays more
 simply and consistently, [Iteration
 methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods),
-and we'll model some of these JavaScript Array methods as functions.
+and we'll model some of these JavaScript Array methods as functions.  Building
+models of these methods helps us understand their functionality.
 
 We'll check our work in `node` or using the scripts in `bin/`.
 
-### Demo: modeling and using `forEach`
+There are two main groups of array iteration methods:
+
+1.  Those that must process all of the array elements
+1.  Those that may only process a subset of the array elements
+
+### Processing all array elements
+
+#### Demo: modeling and using `forEach`
 
 The
 [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
@@ -82,10 +100,10 @@ From the MDN documentation:
     instead. If available, the new methods find() or findIndex() can be used for
     early termination upon true predicates as well.
 
-This means that `forEach` is a poor choice for an operation on an array that may
+This means that `forEach` is a poor choice for an array operation that may
 terminate early.
 
-### Code along: modeling and using `map`
+#### Code along: modeling and using `map`
 
 The
 [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
@@ -101,7 +119,7 @@ model of it in terms of `forEach`.
 After we build our version of `map`, we'll test and compare it against the built
 in version.
 
-### Annotate along: modeling and using `reduce`
+#### Annotate along: modeling and using `reduce`
 
 The
 [reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
@@ -114,10 +132,10 @@ implementation uses `forEach`.
 The key to **using** `reduce` properly is to methodically walk-through the
 "How reduce works" section at the above link.
 
-After we build our version of `reduce`, we'll test and compare it against the
+After we annotate our version of `reduce`, we'll test and compare it against the
 built in version.
 
-### Lab: modeling and using `filter`
+#### Lab: modeling and using `filter`
 
 The
 [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -129,47 +147,15 @@ array.
 
 Callbacks passed to `filter` should be predicate functions.
 
-### Demo: modeling and using `findIndex`
+#### Code along: Adding functionality - count
 
-The
-[findIndex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
-method returns the index of the first element in the array for which the
-callback returns true.
+`Array.prototype.length` tells us the number of elements in the array.  But what
+if we want to know the number of elements that pass a certain test?
 
-Why do we need `findIndex`?  Why not just use
-[indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)?
+We'll build a function that counts the elements in an array for which a
+predicate callback returns `true`.
 
-### Code along: modeling and using `find`
-
-The
-[find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
-method returns the first element in the array for which the callback returns
-true.
-
-Can we build `find` using `findIndex`?
-
-### Code along: modeling and using `some`
-
-The
-[some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
-method return true if the callback returns `true` for any element of the array.
-
-Callbacks passed to `some` should be predicate functions.
-
-Can we build `some` using `findIndex`?
-
-### Lab: modeling and using `every`
-
-The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
-method checks to see if all elements of the array meet some test.  The function
-used for this should only return `true` or `false`.  This type of function is
-often called a predicate.
-
-Callbacks passed to `every` should be predicate functions.
-
-Can we build `every` using `findIndex`?  Using `some`?
-
-### Lab: modeling and using `reduceRight`
+#### Optional Lab: modeling and using `reduceRight`
 
 The [reduceRight](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
 method is functionally equivalent to using `reduce` on the array returned by
@@ -179,6 +165,48 @@ Hint:  Start by writing `forEachRight` (similar to forEach but iterating from
 the last element (at index `length-1`) through the first (at index 0).
 
 How would the results of calling `reduceRight` differ from calling `reduce`?
+
+### Processing a subset of the array elements
+
+#### Demo: modeling and using `findIndex`
+
+The
+[findIndex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+method returns the index of the first element in the array for which the
+callback returns true.
+
+Why do we need `findIndex`?  Why not just use
+[indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)?
+
+#### Code along: modeling and using `find`
+
+The
+[find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+method returns the first element in the array for which the callback returns
+true.
+
+Can we build `find` using `findIndex`?
+
+#### Code along: modeling and using `some`
+
+The
+[some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+method return true if the callback returns `true` for any element of the array.
+
+Callbacks passed to `some` should be predicate functions.
+
+Can we build `some` using `findIndex`?
+
+#### Lab: modeling and using `every`
+
+The [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+method checks to see if all elements of the array meet some test.  The function
+used for this should only return `true` or `false`.  This type of function is
+often called a predicate.
+
+Callbacks passed to `every` should be predicate functions.
+
+Can we build `every` using `findIndex`?  Using `some`?
 
 ## Additional Resources
 

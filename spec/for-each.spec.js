@@ -22,7 +22,7 @@ describe('forEach', function () {
 
       const callback = function (e, i, a) {
         success = success &&
-          typeof currentValue === 'number' &&
+          typeof e === 'number' &&
           index++ === i &&
           array === a
       }
