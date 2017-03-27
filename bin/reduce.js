@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-const examples = require('../lib/examples');
-const reduce = require('../lib/reduce.js');
+const examples = require('../lib/examples')
+const reduce = require('../lib/reduce.js')
 
-let workingArray = examples.numbers.whole;
+const workingArray = examples.numbers.whole
 
-let result = reduce(workingArray, (p, c /*, i, a */) => p + c);
+const result = reduce(workingArray, (p, c, i, a) => p + c)
 
-console.log('reduce result', result);
+console.log('reduce result', result)

@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-const examples = require('../lib/examples');
-const filter = require('../lib/filter.js');
+const examples = require('../lib/examples')
+const filter = require('../lib/filter.js')
 
-let workingArray = examples.numbers.whole;
+const workingArray = examples.numbers.whole
 
-let result = filter(workingArray, (e /*, i, a */) => e > 7);
+const result = filter(workingArray, (e, i, a) => e > 7)
 
-console.log('filter result', result);
+console.log('filter result', result)

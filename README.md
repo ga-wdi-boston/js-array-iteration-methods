@@ -16,10 +16,10 @@ By the end of this talk, developers should be able to:
 
 ## Preparation
 
-1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
-    this repository.
+1.  Fork and clone this repository.
+ [FAQ](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
 1.  Create a new branch, `training`, for your work.
-1.  Checkout the `training` branch.
+1.  Checkout to the `training` branch.
 1.  Install dependencies with `npm install`.
 
 ## Callbacks
