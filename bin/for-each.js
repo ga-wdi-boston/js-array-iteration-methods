@@ -2,10 +2,9 @@
 'use strict'
 
 const examples = require('../lib/examples')
-const forEach = require('../lib/for-each.js')
+// const forEach = require('../lib/for-each.js')
 
-const workingArray = examples.numbers.whole
+const workingArray = examples.numbers.fibonacci
 
-forEach(workingArray, (e, i, a) => {
-  console.log(e, i, a === workingArray)
-})
+// forEach(workingArray, (e, i, a) => console.log(e, i))
+workingArray.forEach((e, i, a) => console.log(e, i))

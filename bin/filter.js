@@ -4,8 +4,9 @@
 const examples = require('../lib/examples')
 const filter = require('../lib/filter.js')
 
-const workingArray = examples.numbers.whole
+const loadCities = examples.cities.loadCities
 
-const result = filter(workingArray, (e, i, a) => e > 7)
-
-console.log('filter result', result)
+loadCities((cities) => {
+  const filteredCities = filter(cities, (city) => city.country === 'UK')
+  console.log(filteredCities)
+})
