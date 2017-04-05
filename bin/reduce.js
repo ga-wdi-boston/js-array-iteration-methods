@@ -4,8 +4,10 @@
 const examples = require('../lib/examples')
 const reduce = require('../lib/reduce.js')
 
-const workingArray = examples.numbers.whole
+const loadCities = examples.cities.loadCities
 
-const result = reduce(workingArray, (p, c, i, a) => p + c)
-
-console.log('reduce result', result)
+loadCities((cities) => {
+  const city = reduce(cities,
+    (a, e, i, array) => +a.population > +e.population ? a : e)
+  console.log(city === cities[cities.length - 1])
+})

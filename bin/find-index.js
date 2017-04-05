@@ -4,8 +4,9 @@
 const examples = require('../lib/examples')
 const findIndex = require('../lib/find-index.js')
 
-const workingArray = examples.numbers.whole
+const loadCities = examples.cities.loadCities
 
-const result = findIndex(workingArray, (e, i, a) => e === 7)
-
-console.log('findIndex result', result)
+loadCities((cities) => {
+  const cityIndex = findIndex(cities, (e, i, a) => e.country === 'BR')
+  console.log(cities[cityIndex])
+})

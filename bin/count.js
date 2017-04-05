@@ -4,8 +4,9 @@
 const examples = require('../lib/examples')
 const count = require('../lib/count.js')
 
-const workingArray = examples.numbers.whole
+const loadCities = examples.cities.loadCities
 
-const result = count(workingArray, (e, i, a) => e > 0)
-
-console.log('count result', result)
+loadCities((cities) => {
+  const countOfCities = count(cities, (e, i, a) => e.country === 'BR')
+  console.log(countOfCities)
+})

@@ -4,8 +4,11 @@
 const examples = require('../lib/examples')
 const map = require('../lib/map.js')
 
-const workingArray = examples.numbers.whole
+// const workingArray = examples.numbers.whole
 
-const result = map(workingArray, (e, i, a) => e + 1)
+const loadCities = examples.cities.loadCities
 
-console.log('map result', result)
+loadCities((cities) => {
+  const names = map(cities, (e, i, a) => e.name)
+  console.log(names)
+})

@@ -4,8 +4,9 @@
 const examples = require('../lib/examples')
 const some = require('../lib/some.js')
 
-const workingArray = examples.numbers.whole
+const loadCities = examples.cities.loadCities
 
-const result = some(workingArray, (e, i, a) => e > 0)
-
-console.log('some result', result)
+loadCities((cities) => {
+  const matches = some(cities, (e, i, a) => e.country === 'JO')
+  console.log(matches)
+})
